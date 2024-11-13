@@ -3,6 +3,7 @@ package edu.gmu.cs321;
 import static edu.gmu.cs321.State.*;
 import static edu.gmu.cs321.Status.*;
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
@@ -23,23 +24,23 @@ public class ScreenTest
 
     @Test
     public void check_id() {
-        assertEquals("1", data_entry.get_eid());
-        assertEquals("2", reviewer.get_eid());
-        assertEquals("3", approver.get_eid());
+        assertEquals("1", dataEntry.getEid());
+        assertEquals("2", reviewer.getEid());
+        assertEquals("3", approver.getEid());
     }
 
     @Test
     public void check_name() {
-        assertEquals("bob", data_entry.get_name());
-        assertEquals("steve", reviewer.get_name());
-        assertEquals("cuk", approver.get_name());
+        assertEquals("bob", data_entry.getName());
+        assertEquals("steve", reviewer.getName());
+        assertEquals("cuk", approver.getName());
     }
 
     @Test
     public void check_imm_name() {
-        assertEquals("gob", form1.get_name());
-        assertEquals("berry", form2.get_name());
-        assertEquals("sarah", form3.get_name());
+        assertEquals("gob", form1.getName());
+        assertEquals("berry", form2.getName());
+        assertEquals("sarah", form3.getName());
     }
 
     @Test

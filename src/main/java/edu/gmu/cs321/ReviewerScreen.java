@@ -3,9 +3,17 @@ package edu.gmu.cs321;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import static edu.gmu.cs321.Status.ASYLUM;
+import static edu.gmu.cs321.Status.LAWFUL;
 
 public class ReviewerScreen extends Application {
 
@@ -15,9 +23,36 @@ public class ReviewerScreen extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Employee reviewer = new Reviewer("2", "steve");
+        Form form1 = new Form("5", "11", "gob", "10/28/1999", LAWFUL);
+        Form form2 = new Form("6", "24", "berry", "03/26/2002", ASYLUM);
+
+        // Javafx
+        BorderPane root = new BorderPane();
+        TableView<Form> table = new TableView<>();
+
+        TableColumn<Form, Integer> formIdColumn = new TableColumn<>("Form ID");
+        formIdColumn.setCellValueFactory(new PropertyValueFactory<>("formId"));
+
+        TableColumn<Form, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+        TableColumn<Form, String> statusColumn = new TableColumn<>("Status");
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        table.getColumns().add(formIdColumn);
+        table.getColumns().add(nameColumn);
+        table.getColumns().add(statusColumn);
+
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        table.getItems().add(form1);
+        table.getItems().add(form2);
+
+        root.setCenter(table);
+
+        Scene scene = new Scene(root, 500, 300);
+        stage.setTitle("Reviewer Workflow Screen");
         stage.setScene(scene);
         stage.show();
     }
