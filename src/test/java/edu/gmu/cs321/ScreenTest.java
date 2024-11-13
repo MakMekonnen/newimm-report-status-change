@@ -3,7 +3,6 @@ package edu.gmu.cs321;
 import static edu.gmu.cs321.State.*;
 import static edu.gmu.cs321.Status.*;
 import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
 
@@ -31,11 +30,15 @@ public class ScreenTest
 
     @Test
     public void check_name() {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         assertEquals("bob", data_entry.getName());
 =======
         assertEquals("bob", dataEntry.getName());
 >>>>>>> 2f6d47c151593ad3834c90efa823756de9a60cbd
+=======
+        assertEquals("bob", dataEntry.getName());
+>>>>>>> Stashed changes
         assertEquals("steve", reviewer.getName());
         assertEquals("cuk", approver.getName());
     }
