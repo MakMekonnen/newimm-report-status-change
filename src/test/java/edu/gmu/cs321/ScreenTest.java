@@ -30,7 +30,7 @@ public class ScreenTest
 
     @Test
     public void check_name() {
-        assertEquals("bob", data_entry.getName());
+        assertEquals("bob", dataEntry.getName());
         assertEquals("bob", dataEntry.getName());
         assertEquals("bob", dataEntry.getName());
         assertEquals("steve", reviewer.getName());
