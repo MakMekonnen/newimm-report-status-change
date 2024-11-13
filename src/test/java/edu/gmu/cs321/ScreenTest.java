@@ -31,7 +31,11 @@ public class ScreenTest
 
     @Test
     public void check_name() {
+<<<<<<< HEAD
         assertEquals("bob", data_entry.getName());
+=======
+        assertEquals("bob", dataEntry.getName());
+>>>>>>> 2f6d47c151593ad3834c90efa823756de9a60cbd
         assertEquals("steve", reviewer.getName());
         assertEquals("cuk", approver.getName());
     }
@@ -45,44 +49,44 @@ public class ScreenTest
 
     @Test
     public void check_status_enum() {
-        assertEquals(LAWFUL, form1.get_status());
-        assertEquals(ASYLUM, form2.get_status());
-        assertEquals(CITIZEN, form3.get_status());
+        assertEquals(LAWFUL, form1.getStatus());
+        assertEquals(ASYLUM, form2.getStatus());
+        assertEquals(CITIZEN, form3.getStatus());
     }
 
     @Test
     public void pass_through_form() {
-        wf.add_form(form1);
-        assertEquals(DATA_ENTRY_STATE, form1.get_state());
-        data_entry.submit(form1);
-        assertEquals(REVIEWER_STATE, form1.get_state());
-        reviewer.submit(form1);
-        assertEquals(APPROVER_STATE, form1.get_state());
-        approver.submit(form1);
-        assertEquals(COMPLETE_STATE, form1.get_state());
+        wf.addForm(form1);
+        assertEquals(DATA_ENTRY_STATE, form1.getState());
+        dataEntry.submitForm(form1);
+        assertEquals(REVIEWER_STATE, form1.getState());
+        reviewer.submitForm(form1);
+        assertEquals(APPROVER_STATE, form1.getState());
+        approver.submitForm(form1);
+        assertEquals(COMPLETE_STATE, form1.getState());
     }
 
     @Test
     public void check_add_form() {
-        wf.add_form(form1);
-        wf.add_form(form2);
-        assertEquals(wf.get_form_list()[0].get_form_id(), form1.get_form_id());
-        assertEquals(wf.get_form_list()[1].get_form_id(), form2.get_form_id());
+        wf.addForm(form1);
+        wf.addForm(form2);
+        assertEquals(wf.getFormList()[0].getFormId(), form1.getFormId());
+        assertEquals(wf.getFormList()[1].getFormId(), form2.getFormId());
     }
 
     @Test
     public void check_search_form() {
-        wf.add_form(form1);
-        wf.add_form(form2);
-        assertEquals("5", wf.search_form("5").get_form_id());
-        assertEquals("6", wf.search_form("6").get_form_id());
+        wf.addForm(form1);
+        wf.addForm(form2);
+        assertEquals("5", wf.searchForm("5").getFormId());
+        assertEquals("6", wf.searchForm("6").getFormId());
     }
 
     // Fix Validator Class
     @Test
     public void check_validate_form() {
         Validation v = new Validation();
-        assertTrue(v.validate_form(form1));
-        assertFalse(v.validate_form(form4));
+        assertTrue(v.validateForm(form1));
+        assertFalse(v.validateForm(form4));
     }
 }
