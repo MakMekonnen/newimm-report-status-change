@@ -30,15 +30,9 @@ public class ScreenTest
 
     @Test
     public void check_name() {
-<<<<<<< Updated upstream
-<<<<<<< HEAD
         assertEquals("bob", data_entry.getName());
-=======
         assertEquals("bob", dataEntry.getName());
->>>>>>> 2f6d47c151593ad3834c90efa823756de9a60cbd
-=======
         assertEquals("bob", dataEntry.getName());
->>>>>>> Stashed changes
         assertEquals("steve", reviewer.getName());
         assertEquals("cuk", approver.getName());
     }
