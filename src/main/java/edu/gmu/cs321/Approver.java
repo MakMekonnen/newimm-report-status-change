@@ -7,7 +7,8 @@ public class Approver extends Employee{
         super(eid, name);
     }
 
-    public void submit(Form form) {
+    public void submitForm(Form form) {
         form.setState(COMPLETE_STATE);
+        super.submitForm(form);
     }
 }

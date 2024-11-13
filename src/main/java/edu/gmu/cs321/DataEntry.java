@@ -10,5 +10,6 @@ public class DataEntry extends Employee{
 
     public void submit(Form form) {
         form.setState(REVIEWER_STATE);
+        super.submitForm(form);
     }
 }

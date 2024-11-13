@@ -9,5 +9,6 @@ public class Reviewer extends Employee{
 
     public void submit(Form form) {
         form.setState(APPROVER_STATE);
+        super.submitForm(form);
     }
 }

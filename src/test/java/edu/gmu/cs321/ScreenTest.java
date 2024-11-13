@@ -51,13 +51,13 @@ public class ScreenTest
 
     @Test
     public void pass_through_form() {
-        wf.add_form(form1);
+        wf.addForm(form1);
         assertEquals(DATA_ENTRY_STATE, form1.getState());
-        data_entry.submit(form1);
+        dataEntry.submitForm(form1);
         assertEquals(REVIEWER_STATE, form1.getState());
-        reviewer.submit(form1);
+        reviewer.submitForm(form1);
         assertEquals(APPROVER_STATE, form1.getState());
-        approver.submit(form1);
+        approver.submitForm(form1);
         assertEquals(COMPLETE_STATE, form1.getState());
     }
 
