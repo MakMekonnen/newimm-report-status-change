@@ -2,13 +2,18 @@ package edu.gmu.cs321;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 
@@ -50,6 +55,15 @@ public class ReviewerScreen extends Application {
         table.getItems().add(form2);
 
         root.setCenter(table);
+
+        Button viewFormButton = new Button("View Form");
+        Button submitButton = new Button("Submit");
+
+        HBox hbox = new HBox(50);
+        hbox.getChildren().addAll(viewFormButton, submitButton);
+        hbox.setAlignment(Pos.CENTER);
+
+        root.setBottom(hbox);
 
         Scene scene = new Scene(root, 500, 300);
         stage.setTitle("Reviewer Workflow Screen");
