@@ -39,6 +39,9 @@ public class ReviewerScreen extends Application {
         TableColumn<Form, Integer> formIdColumn = new TableColumn<>("Form ID");
         formIdColumn.setCellValueFactory(new PropertyValueFactory<>("formId"));
 
+        TableColumn<Form, Integer> aidColumn = new TableColumn<>("Applicant ID");
+        aidColumn.setCellValueFactory(new PropertyValueFactory<>("aid"));
+
         TableColumn<Form, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
@@ -46,6 +49,7 @@ public class ReviewerScreen extends Application {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         table.getColumns().add(formIdColumn);
+        table.getColumns().add(aidColumn);
         table.getColumns().add(nameColumn);
         table.getColumns().add(statusColumn);
 
