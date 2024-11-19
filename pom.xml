@@ -48,6 +48,14 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
+         <dependency>
+            <groupId>com.cs321</groupId>
+            <artifactId>Workflow</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/edu/gmu/cs321/workflow.jar</systemPath>
+        </dependency>
+             // Add the connector depedency as well for JDBCConnector
     </dependencies>
 
     <build>
