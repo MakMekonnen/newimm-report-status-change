@@ -1,6 +1,8 @@
 module edu.gmu.cs321 {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
+    
 
     requires org.controlsfx.controls;
 
