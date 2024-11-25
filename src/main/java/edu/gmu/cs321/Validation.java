@@ -1,7 +1,8 @@
 package edu.gmu.cs321;
 
 public class Validation {
-    private boolean hasOnlyLetters(String str) {
+
+    public static boolean hasOnlyLetters(String str) {
         for (int i = 0; i < str.length(); i++) {
             char c = str.charAt(i);
             if (!((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))) {
@@ -11,7 +12,7 @@ public class Validation {
         return true;
     }
 
-    private boolean hasOnlyDigits(String str){
+    public static boolean hasOnlyDigits(String str){
         for (int i=0; i < str.length(); i++){
             char c = str.charAt(i);
             if(c < '0' || c > '9'){
@@ -20,6 +21,71 @@ public class Validation {
         }
         return true;
     }
+    /*
+     * Data Entry Validation Functions
+     */
+    public static boolean checkNameFormat(String input){
+        if(input == null){
+            return false;
+        }
+        else if(input.trim().isEmpty()){
+            return false;
+        }
+        else if (input.split(" ").length != 1){
+            return false;
+        }
+        else if (!hasOnlyLetters(input.trim())){
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkDateFormat(String input){
+        if(input == null){
+            return false;
+        }
+        else if (input.trim().isEmpty()){
+            return false;
+        }
+        if (input.length() != 10){
+            return false;
+        }
+        String dob = input.replace("/", "");
+        if (dob.length() != 8){
+            return false;
+        }
+        if (!hasOnlyDigits(dob)) {
+            return false;
+        }
+        //checking fields of a date
+        int month = Integer.parseInt(dob.substring(0, 2), 10);
+        int day = Integer.parseInt(dob.substring(2, 4), 10);
+        if (month < 1 || month > 12){
+            return false;
+        }
+        return day >= 1 && day <= 31;   //probably need to check the month in order to get the max days
+    }
+
+    public static boolean checkAIDFormat(String input){
+        if(input == null){
+            return false;
+        }
+        else if(input.trim().isEmpty()){
+            return false;
+        }
+        else if(!input.substring(0, 2).equals("A-")){
+            return false;
+        }
+        String nums = input.substring(2);
+        if(nums.length() < 6 || nums.length() > 9){
+            return false;
+        }
+        else if (!hasOnlyDigits(nums)){
+            return false;
+        }
+        return true;
+    }
+
     public boolean validateForm(Form form) {
         //Checking if any fields are null
         if (form == null) {
@@ -47,40 +113,9 @@ public class Validation {
         if (form.getState() == null){
             return false;
         }
-        if (!hasOnlyLetters(name)){
+        if (!checkNameFormat(name)){
             return false;
         }
-        //Checking if DOB is in correct format
-        if (dob.length() != 10){
-            return false;
-        }
-        String cleanDOB = dob.replace("/", "");
-        if (cleanDOB.length() != 8){
-            return false;
-        }
-
-        if (!hasOnlyDigits(cleanDOB)) {
-            return false;
-        }
-
-        if (!hasOnlyLetters(cleanDOB.substring(0, 2))) {
-            return false;
-        }
-
-        if (!hasOnlyDigits(cleanDOB.substring(3, 5))) {
-            return false;
-        }
-        if (!hasOnlyLetters(name)) {
-            return false;
-        }
-
-        //checking fields of a date
-        int month = Integer.parseInt(cleanDOB.substring(0, 2), 10);
-        int day = Integer.parseInt(cleanDOB.substring(2, 4), 10);
-
-        if (month < 1 || month > 12){
-            return false;
-        }
-        return day >= 1 && day <= 31;   //probably need to check the month in order to get the max days
+        return checkDateFormat(dob);
     }
 }

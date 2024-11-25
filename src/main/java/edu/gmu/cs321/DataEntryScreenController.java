@@ -2,17 +2,20 @@ package edu.gmu.cs321;
 
 import java.lang.StringBuilder;
 import java.net.URL;
-import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.paint.Color;
 
 public class DataEntryScreenController implements Initializable{
 
@@ -23,6 +26,22 @@ public class DataEntryScreenController implements Initializable{
     private DatePicker dob;
 
     @FXML
+    private Label labelAID;
+
+    @FXML
+    private Label labelDOB;
+
+    @FXML
+    private Label labelFirstName;
+
+    @FXML
+    private Label labelLastName;
+
+    @FXML
+    private Label labelStatus;
+
+
+    @FXML
     private TextField aid;
 
     @FXML
@@ -30,10 +49,6 @@ public class DataEntryScreenController implements Initializable{
 
     @FXML
     private TextField firstName;
-
-    @FXML
-
-    private Button submit;
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
@@ -47,17 +62,78 @@ public class DataEntryScreenController implements Initializable{
 
     @FXML
     void onValidateButtonClick(ActionEvent event) {
-        StringBuilder sb = new StringBuilder(firstName.getText());
+        int errors = 0;
+
+        String fname = firstName.getText();
+        if(!Validation.checkNameFormat(fname)){
+            labelFirstName.setTextFill(Color.RED);
+            errors++;
+        }else{
+            labelFirstName.setTextFill(Color.BLACK);
+        }
+
+        String lname = lastName.getText();
+        if(!Validation.checkNameFormat(lname)){
+            labelLastName.setTextFill(Color.RED);
+            errors++;
+        }else{
+            labelLastName.setTextFill(Color.BLACK);
+        }
+
+        String current_dob = null;
+
+        if(dob.getValue() == null){
+            labelDOB.setTextFill(Color.RED);
+            errors++;
+        }else{
+            labelDOB.setTextFill(Color.BLACK);
+            current_dob = dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        }
+
+        if(!Validation.checkDateFormat(current_dob)){
+            labelDOB.setTextFill(Color.RED);
+            errors++;
+        }else{
+            labelDOB.setTextFill(Color.BLACK);
+        }
+
+        String current_aid = aid.getText();
+        if(!Validation.checkAIDFormat(current_aid)){
+            labelAID.setTextFill(Color.RED);
+            errors++;
+        }else{
+            labelAID.setTextFill(Color.BLACK);
+        }
+
+        Status current_status = status.getValue();
+        if(current_status == null){
+            labelStatus.setTextFill(Color.RED);
+            errors++;
+        }else{
+            labelStatus.setTextFill(Color.BLACK);
+        }
+
+        if(errors > 0){
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder(fname);
         sb.append(" ");
-        sb.append(lastName.getText());
+        sb.append(lname);
         String current_name = sb.toString();
-        String current_dob = dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        System.out.println(current_dob);
-
-        Form session_form = new Form("1", aid.getText(), current_name, current_dob, status.getValue());
-
+        Form session_form = new Form("1", current_aid, current_name, current_dob, current_status);
         System.out.println(session_form);
-    }
 
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setHeaderText("Submitted!");
+        alert.setContentText("Form has been validated and submitted into the workflow!");
+        if(alert.showAndWait().get() == ButtonType.OK){
+            firstName.clear();
+            lastName.clear();
+            dob.setValue(null);
+            aid.clear();
+            status.setValue(null);
+        }
+    }
 }
