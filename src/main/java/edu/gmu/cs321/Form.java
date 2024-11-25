@@ -79,4 +79,16 @@ public class Form {
     public void setStatus(Status status) {
         this.status = status;
     }
+    
+    public String toString(){
+        StringBuilder sb = new StringBuilder(name);
+        sb.append(", ");
+        sb.append(dob);
+        sb.append(", ");
+        sb.append(status.toString());
+        sb.append(", ");
+        sb.append(aid);
+
+        return sb.toString();
+    }
 }

@@ -16,9 +16,8 @@ public class DataEntryScreen extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        BorderPane root = new BorderPane();
-
-        Scene scene = new Scene(root, 600, 400);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("DataEntryScreen.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 400, 350);
         stage.setTitle("Data Entry");
         stage.setScene(scene);
         stage.show();

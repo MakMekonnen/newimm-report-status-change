@@ -6,26 +6,60 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gmu.cs321.DataEntryScreenController">
-   <children>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ececec" height="242.0" layoutX="20.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="459.0" />
-      <Label fx:id="label_title" alignment="CENTER" layoutX="211.0" layoutY="23.0" prefHeight="17.0" prefWidth="78.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" text="Data Entry" />
-      <Button layoutX="46.0" layoutY="355.0" mnemonicParsing="false" onAction="#onValidateButtonClick" prefHeight="25.0" prefWidth="126.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="Validate" />
-      <Button layoutX="328.0" layoutY="355.0" mnemonicParsing="false" onAction="#onSubmitButtonClick" prefHeight="25.0" prefWidth="126.0" scaleX="1.5" scaleY="1.5" scaleZ="1.5" text="Submit" />
-      <View />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cacaca" height="49.0" layoutX="20.0" layoutY="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="3.0" width="459.0" />
-      <Label contentDisplay="TOP" layoutX="166.0" layoutY="72.0" scaleX="1.2" scaleY="1.2" scaleZ="1.2" text="Immigrant Status Change Form" />
-      <Label layoutX="82.0" layoutY="123.0" text="First Name" />
-      <TextField fx:id="field_firstName" layoutX="256.0" layoutY="119.0" prefHeight="25.0" prefWidth="175.0" />
-      <Label layoutX="82.0" layoutY="163.0" text="Last Name" />
-      <TextField fx:id="field_LastName" layoutX="256.0" layoutY="159.0" prefHeight="25.0" prefWidth="175.0" />
-      <Label layoutX="82.0" layoutY="203.0" text="Date of Birth" />
-      <TextField fx:id="field_AID" layoutX="256.0" layoutY="239.0" prefHeight="25.0" prefWidth="175.0" />
-      <Label layoutX="82.0" layoutY="243.0" text="Alien ID" />
-      <Label layoutX="82.0" layoutY="283.0" text="Requested Status" />
-      <DatePicker fx:id="dob" layoutX="256.0" layoutY="199.0" />
-      <ChoiceBox fx:id="choice_status" layoutX="256.0" layoutY="279.0" prefWidth="175.0" />
-   </children>
-</AnchorPane>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.gmu.cs321.DataEntryScreenController">
+   <center>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="400.0">
+         <children>
+            <Label alignment="CENTER" layoutX="145.0" layoutY="14.0" text="Data Entry">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="67.0" text="First Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="107.0" text="Last Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="147.0" text="Date of Birth">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="187.0" text="Alien ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="62.0" layoutY="227.0" text="Status">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="firstName" layoutX="164.0" layoutY="65.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter First Name" />
+            <TextField fx:id="lastName" layoutX="164.0" layoutY="104.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Last Name" />
+            <TextField fx:id="aid" layoutX="164.0" layoutY="185.0" prefHeight="25.0" prefWidth="174.0" promptText="Enter Alien ID" />
+            <DatePicker fx:id="dob" layoutX="164.0" layoutY="145.0" promptText="Enter Date of Birth" />
+            <ChoiceBox fx:id="status" layoutX="164.0" layoutY="225.0" prefWidth="174.0" />
+            <Button layoutX="14.0" layoutY="284.0" mnemonicParsing="false" onAction="#onValidateButtonClick" prefHeight="52.0" prefWidth="131.0" text="Validate">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="submit" disable="true" layoutX="255.0" layoutY="284.0" mnemonicParsing="false" onAction="#onSubmitButtonClick" prefHeight="52.0" prefWidth="131.0" text="Submit">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
