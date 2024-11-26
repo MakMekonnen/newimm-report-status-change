@@ -17,9 +17,9 @@ public class Workflow {
         }
     }
 
-    public Form searchForm(String formId) {
+    public Form searchForm(int formId) {
         for (Form form : formList) {
-            if (form.getFormId().equals(formId)) {
+            if (form.getFormId() == formId) {
                 return form;
             }
         }

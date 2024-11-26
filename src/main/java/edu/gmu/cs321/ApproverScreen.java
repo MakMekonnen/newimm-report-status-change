@@ -22,7 +22,7 @@ public class ApproverScreen extends Application {
     @Override
     public void start(Stage stage) {
         // Template Form
-        Form form = new Form("6", "A24", "berry", "03/26/2002", Status.ASYLUM);
+        Form form = new Form("A24", "berry", "03/26/2002", Status.ASYLUM);
 
         // Main layout
         BorderPane root = new BorderPane();
@@ -64,7 +64,7 @@ public class ApproverScreen extends Application {
 
         // Labels and text fields for form fields
         Label formIdLabel = new Label("Form ID: ");
-        TextField formIdField = new TextField(form.getFormId());
+        TextField formIdField = new TextField("" + form.getFormId());
         formIdLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
         formIdField.setStyle("-fx-font-size: 12px");
         formIdField.setEditable(false);

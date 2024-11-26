@@ -42,28 +42,38 @@ public class Validation {
 
     public static boolean checkDateFormat(String input){
         if(input == null){
+            //System.out.println("NULL Date");
             return false;
         }
         else if (input.trim().isEmpty()){
+            //System.out.println("Empty Date");
             return false;
         }
         if (input.length() != 10){
+            //System.out.println("Wrong Length Date 1");
             return false;
         }
         String dob = input.replace("/", "");
         if (dob.length() != 8){
+            //System.out.println("Wrong Length Date 2");
             return false;
         }
         if (!hasOnlyDigits(dob)) {
+            //System.out.println("Lettered Date");
             return false;
         }
         //checking fields of a date
         int month = Integer.parseInt(dob.substring(0, 2), 10);
         int day = Integer.parseInt(dob.substring(2, 4), 10);
         if (month < 1 || month > 12){
+            //System.out.println("Out of bounds Month Date: " + month);
             return false;
         }
-        return day >= 1 && day <= 31;   //probably need to check the month in order to get the max days
+        if(day < 1 || day > 31){
+            //System.out.println("Out of bounds Day Date: " + day);
+            return false;
+        }
+        return true;
     }
 
     public static boolean checkAIDFormat(String input){
@@ -95,9 +105,6 @@ public class Validation {
         String name = form.getName();
         String dob = form.getDob(); //used for further testing
 
-        if (form.getFormId() == null){
-            return false;
-        }
         if (form.getAid() == null){
             return false;
         }

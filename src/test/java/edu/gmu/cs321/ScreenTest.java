@@ -12,12 +12,12 @@ public class ScreenTest
     Employee reviewer = new Reviewer("2", "steve");
     Employee approver = new Approver("3", "cuk");
 
-    Form form1 = new Form("5", "11", "gob", "10/28/1999", LAWFUL);
-    Form form2 = new Form("6", "24", "berry", "03/26/2002", ASYLUM);
-    Form form3 = new Form("7", "15", "sarah", "05/14/2006", CITIZEN);
+    Form form1 = new Form("11", "gob", "10/28/1999", LAWFUL);
+    Form form2 = new Form("24", "berry", "03/26/2002", ASYLUM);
+    Form form3 = new Form("15", "sarah", "05/14/2006", CITIZEN);
 
     // bad form
-    Form form4 = new Form("7", "15", "34324", "0d/14/2006", CITIZEN);
+    Form form4 = new Form("15", "34324", "0d/14/2006", CITIZEN);
 
     Workflow wf = new Workflow("1", 5);
 
@@ -81,8 +81,8 @@ public class ScreenTest
     public void check_search_form() {
         wf.addForm(form1);
         wf.addForm(form2);
-        assertEquals("5", wf.searchForm("5").getFormId());
-        assertEquals("6", wf.searchForm("6").getFormId());
+        assertEquals("5", wf.searchForm(5).getFormId());
+        assertEquals("6", wf.searchForm(6).getFormId());
     }
 
     // Fix Validator Class

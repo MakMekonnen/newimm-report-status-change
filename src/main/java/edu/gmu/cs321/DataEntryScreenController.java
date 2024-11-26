@@ -40,7 +40,6 @@ public class DataEntryScreenController implements Initializable{
     @FXML
     private Label labelStatus;
 
-
     @FXML
     private TextField aid;
 
@@ -50,9 +49,12 @@ public class DataEntryScreenController implements Initializable{
     @FXML
     private TextField firstName;
 
+    private DataEntry de;
+
     @Override
     public void initialize(URL arg0, ResourceBundle arg1){
         status.getItems().addAll(Status.values());
+        de = new DataEntry("123456", "Adrian Rios");
     }
 
     @FXML
@@ -81,15 +83,13 @@ public class DataEntryScreenController implements Initializable{
         }
 
         String current_dob = null;
-
         if(dob.getValue() == null){
             labelDOB.setTextFill(Color.RED);
             errors++;
         }else{
             labelDOB.setTextFill(Color.BLACK);
-            current_dob = dob.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            current_dob = dob.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
         }
-
         if(!Validation.checkDateFormat(current_dob)){
             labelDOB.setTextFill(Color.RED);
             errors++;
@@ -116,13 +116,13 @@ public class DataEntryScreenController implements Initializable{
         if(errors > 0){
             return;
         }
-
         StringBuilder sb = new StringBuilder(fname);
         sb.append(" ");
         sb.append(lname);
         String current_name = sb.toString();
 
-        Form session_form = new Form("1", current_aid, current_name, current_dob, current_status);
+        Form session_form = new Form(current_aid, current_name, current_dob, current_status);
+        de.submit(session_form);
         System.out.println(session_form);
 
         Alert alert = new Alert(AlertType.INFORMATION);

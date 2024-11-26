@@ -2,17 +2,19 @@ package edu.gmu.cs321;
 
 import static edu.gmu.cs321.State.*;
 
+import java.util.Random;
+
 public class Form {
 
-    private String formId;
+    private int formId;
     private String aid;
     private State state;
     private String name;
     private String dob;
     private Status status;
 
-    public Form(String formId, String aid, String name, String dob, Status status) {
-        this.formId = formId;
+    public Form(String aid, String name, String dob, Status status) {
+        this.formId = 100000 + new Random().nextInt(900000);
         this.aid = aid;
         this.name = name;
         this.dob = dob;
@@ -32,11 +34,11 @@ public class Form {
         // Function to show the form
     }
 
-    public String getFormId() {
+    public int getFormId() {
         return formId;
     }
 
-    public void setFormId(String formId) {
+    public void setFormId(int formId) {
         this.formId = formId;
     }
 
@@ -88,7 +90,8 @@ public class Form {
         sb.append(status.toString());
         sb.append(", ");
         sb.append(aid);
-
+        sb.append(", ");
+        sb.append(formId);
         return sb.toString();
     }
 }

@@ -2,13 +2,13 @@ package edu.gmu.cs321;
 
 import java.sql.*;
 
-import com.mysql.cj.protocol.Resultset;
+//import com.mysql.cj.protocol.Resultset;
 
 public class TestDatabase {
     // JDBC URL, username, and password of MySQL server
     private static final String URL = "jdbc:mysql://localhost:3306/cs321";
     private static final String USER = "root";
-    private static final String PASSWORD = "P@$$w0rd"; // replace with your MySQL password
+    private static final String PASSWORD = "Montanorios12"; // replace with your MySQL password
 
     // JDBC variables for opening, closing connection and statement
     private static Connection connection;

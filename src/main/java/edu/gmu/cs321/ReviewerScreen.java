@@ -29,8 +29,8 @@ public class ReviewerScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Employee reviewer = new Reviewer("2", "steve");
-        Form form1 = new Form("5", "11", "gob", "10/28/1999", LAWFUL);
-        Form form2 = new Form("6", "24", "berry", "03/26/2002", ASYLUM);
+        Form form1 = new Form("11", "gob", "10/28/1999", LAWFUL);
+        Form form2 = new Form("24", "berry", "03/26/2002", ASYLUM);
 
         // Javafx
         BorderPane root = new BorderPane();
