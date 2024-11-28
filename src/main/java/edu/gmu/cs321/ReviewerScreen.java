@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import static edu.gmu.cs321.Status.ASYLUM;
 import static edu.gmu.cs321.Status.LAWFUL;
+import static edu.gmu.cs321.Test.workflow;
 
 public class ReviewerScreen extends Application {
 
@@ -60,18 +61,34 @@ public class ReviewerScreen extends Application {
 
         root.setCenter(table);
 
-        Button viewFormButton = new Button("View Form");
-        Button submitButton = new Button("Submit");
+        Button denyButton = new Button("Deny");
+        Button approveButton = new Button("Approve");
+
+        denyButton.setMinWidth(100);
+        approveButton.setMinWidth(100);
 
         HBox hbox = new HBox(50);
-        hbox.getChildren().addAll(viewFormButton, submitButton);
+        hbox.getChildren().addAll(denyButton, approveButton);
         hbox.setAlignment(Pos.CENTER);
 
         root.setBottom(hbox);
+
+        approveButton.setOnAction(e -> {
+            Form row = table.getSelectionModel().getSelectedItem();
+            workflow.AddWFItem(row.getFormId(), "Approve");
+        });
+
+        denyButton.setOnAction(e -> {
+            Form selectedForm = table.getSelectionModel().getSelectedItem();
+//            if (selectedForm != null) {
+//                System.out.println("Approve button clicked for form: " + selectedForm.getName());
+//            }
+        });
 
         Scene scene = new Scene(root, 500, 300);
         stage.setTitle("Reviewer Workflow Screen");
         stage.setScene(scene);
         stage.show();
     }
+
 }

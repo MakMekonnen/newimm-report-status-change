@@ -9,7 +9,6 @@ public class Test {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
-        Workflow workflow = new Workflow();
 
         // Test 1: Add valid item
         System.out.println("Test 1: Add valid item (FormID: 1, NextStep: 'Review')");
