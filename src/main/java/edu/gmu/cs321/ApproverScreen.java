@@ -4,13 +4,14 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.text.Font;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class ApproverScreen extends Application {
@@ -22,7 +23,7 @@ public class ApproverScreen extends Application {
     @Override
     public void start(Stage stage) {
         // Template Form
-        Form form = new Form("A24", "berry", "03/26/2002", Status.ASYLUM);
+        Form form = new Form("A24", "John Berry", "03/26/2002", Status.ASYLUM);
 
         // Main layout
         BorderPane root = new BorderPane();
@@ -47,6 +48,10 @@ public class ApproverScreen extends Application {
         bottomButtons.setAlignment(Pos.CENTER);
         bottomButtons.setPadding(new Insets(10, 0, 10, 0));
         root.setBottom(bottomButtons);
+
+        // Set Actions
+        approveButton.setOnAction(event -> showConfirmationScreen(stage, form.getName(), "Approve"));
+        denyButton.setOnAction(event -> showConfirmationScreen(stage, form.getName(), "Deny"));
 
         // Set up scene and stage
         Scene scene = new Scene(root, 640, 480);
@@ -106,5 +111,46 @@ public class ApproverScreen extends Application {
         grid.add(statusField, 1, 4);
 
         return grid;
+    }
+
+    // Method for the Confirmation Screen for both Approve and Deny
+    private void showConfirmationScreen(Stage parentStage, String name, String action) {
+        Stage confirmationStage = new Stage();
+        VBox layout = new VBox(15);
+        layout.setPadding(new Insets(20));
+        layout.setAlignment(Pos.CENTER);
+
+        Label message = new Label("Are you sure you want to " + action + " the status change of " + name + "?");
+        message.setStyle("-fx-font-size: 14px;");
+
+        Button yesButton = new Button("Yes");
+        Button noButton = new Button("No");
+
+        // Success Message for either Approve or Deny based on action variable
+        yesButton.setOnAction(event -> {
+            showFinalScreen(action.equals("Approve") ? "Approval Sent." : "Denial Sent.");
+            confirmationStage.close();
+        });
+
+        noButton.setOnAction(event -> confirmationStage.close());
+
+        HBox buttonBox = new HBox(10, yesButton, noButton);
+        buttonBox.setAlignment(Pos.CENTER);
+
+        layout.getChildren().addAll(message, buttonBox);
+
+        Scene scene = new Scene(layout, 600, 200);
+        confirmationStage.setTitle(action + " Confirmation");
+        confirmationStage.setScene(scene);
+        confirmationStage.show();
+    }
+
+    // Final Screen with Success Message
+    private void showFinalScreen(String message) {
+    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    alert.setTitle("Result");
+    alert.setHeaderText("Notice!"); 
+    alert.setContentText(message); 
+    alert.showAndWait(); 
     }
 }
