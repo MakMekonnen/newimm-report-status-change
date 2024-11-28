@@ -122,18 +122,37 @@ public class DataEntryScreenController implements Initializable{
         String current_name = sb.toString();
 
         Form session_form = new Form(current_aid, current_name, current_dob, current_status);
-        System.out.println(Test.workflow.AddWFItem(session_form.getFormId(), session_form.getState().getValue()));
-        System.out.println(session_form);
-
+        session_form.setState(State.REVIEWER_STATE);
+        int result = Test.workflow.AddWFItem(session_form.getFormId(), session_form.getState().getValue());
+       
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setHeaderText("Submitted!");
-        alert.setContentText("Form has been validated and submitted into the workflow!");
-        if(alert.showAndWait().get() == ButtonType.OK){
-            firstName.clear();
-            lastName.clear();
-            dob.setValue(null);
-            aid.clear();
-            status.setValue(null);
+        if(result == 0){
+            alert.setHeaderText("Submitted!");
+            alert.setContentText("Form has been validated and submitted into the workflow!");
+            if(alert.showAndWait().get() == ButtonType.OK){
+                clearAll();
+            }
+        }else if (result == -1){
+            alert.setHeaderText("Unable to submit!");
+            alert.setContentText("The form has an invalid state!");
+            if(alert.showAndWait().get() == ButtonType.OK){
+                clearAll();
+            }
+        }else{
+            alert.setHeaderText("Unable to submit!");
+            alert.setContentText("The form already exists in the workflow!");
+            if(alert.showAndWait().get() == ButtonType.OK){
+                clearAll();
+            }
         }
+
+        
+    }
+    public void clearAll(){
+        firstName.clear();
+        lastName.clear();
+        dob.setValue(null);
+        aid.clear();
+        status.setValue(null);
     }
 }
