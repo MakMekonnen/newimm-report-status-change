@@ -122,7 +122,7 @@ public class DataEntryScreenController implements Initializable{
         String current_name = sb.toString();
 
         Form session_form = new Form(current_aid, current_name, current_dob, current_status);
-        de.submit(session_form);
+        System.out.println(Test.workflow.AddWFItem(session_form.getFormId(), session_form.getState().getValue()));
         System.out.println(session_form);
 
         Alert alert = new Alert(AlertType.INFORMATION);

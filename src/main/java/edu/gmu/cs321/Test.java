@@ -4,6 +4,9 @@ package edu.gmu.cs321;
 import com.cs321.Workflow;
 
 public class Test {
+
+    public static Workflow workflow = new Workflow();
+
     public static void main(String[] args) {
         System.out.println("Hello world!");
         Workflow workflow = new Workflow();
