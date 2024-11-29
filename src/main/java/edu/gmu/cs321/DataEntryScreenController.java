@@ -17,6 +17,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 
+import static edu.gmu.cs321.Test.formIDToForm;
+import static edu.gmu.cs321.Test.workflow;
+
 public class DataEntryScreenController implements Initializable{
 
     @FXML
@@ -123,8 +126,9 @@ public class DataEntryScreenController implements Initializable{
 
         Form session_form = new Form(current_aid, current_name, current_dob, current_status);
         session_form.setState(State.REVIEWER_STATE);
+        formIDToForm.put(session_form.getFormId(), session_form);
         int result = Test.workflow.AddWFItem(session_form.getFormId(), session_form.getState().getValue());
-       
+
         Alert alert = new Alert(AlertType.INFORMATION);
         if(result == 0){
             alert.setHeaderText("Submitted!");

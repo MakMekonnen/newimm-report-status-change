@@ -1,11 +1,12 @@
 package edu.gmu.cs321;
-
+import java.util.HashMap;
 
 import com.cs321.Workflow;
 
 public class Test {
 
     public static Workflow workflow = new Workflow();
+    public static HashMap<Integer, Form> formIDToForm = new HashMap<>();
 
     public static void main(String[] args) {
         System.out.println("Hello world!");

@@ -19,6 +19,7 @@ import java.io.IOException;
 
 import static edu.gmu.cs321.Status.ASYLUM;
 import static edu.gmu.cs321.Status.LAWFUL;
+import static edu.gmu.cs321.Test.formIDToForm;
 import static edu.gmu.cs321.Test.workflow;
 
 public class ReviewerScreen extends Application {
@@ -46,12 +47,16 @@ public class ReviewerScreen extends Application {
         TableColumn<Form, String> nameColumn = new TableColumn<>("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+        TableColumn<Form, String> dobColumn = new TableColumn<>("Date of Birth");
+        dobColumn.setCellValueFactory(new PropertyValueFactory<>("dob"));
+
         TableColumn<Form, String> statusColumn = new TableColumn<>("Status");
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         table.getColumns().add(formIdColumn);
         table.getColumns().add(aidColumn);
         table.getColumns().add(nameColumn);
+        table.getColumns().add(dobColumn);
         table.getColumns().add(statusColumn);
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -59,36 +64,54 @@ public class ReviewerScreen extends Application {
         table.getItems().add(form1);
         table.getItems().add(form2);
 
+        // populate table with forms
+        refresh(table);
+
         root.setCenter(table);
 
+        Button refreshButton = new Button("Refesh");
         Button denyButton = new Button("Deny");
         Button approveButton = new Button("Approve");
 
+        refreshButton.setMinWidth(100);
         denyButton.setMinWidth(100);
         approveButton.setMinWidth(100);
 
         HBox hbox = new HBox(50);
-        hbox.getChildren().addAll(denyButton, approveButton);
+        hbox.getChildren().addAll(refreshButton, denyButton, approveButton);
         hbox.setAlignment(Pos.CENTER);
 
         root.setBottom(hbox);
 
+        refreshButton.setOnAction(e -> {
+            refresh(table);
+            System.out.println("refreshing");
+        });
+
         approveButton.setOnAction(e -> {
             Form row = table.getSelectionModel().getSelectedItem();
-            workflow.AddWFItem(row.getFormId(), "Approve");
+            if (row != null) {
+                workflow.AddWFItem(row.getFormId(), "Approve");
+            }
         });
 
         denyButton.setOnAction(e -> {
             Form selectedForm = table.getSelectionModel().getSelectedItem();
-//            if (selectedForm != null) {
-//                System.out.println("Approve button clicked for form: " + selectedForm.getName());
-//            }
         });
 
         Scene scene = new Scene(root, 500, 300);
         stage.setTitle("Reviewer Workflow Screen");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void refresh(TableView<Form> table) {
+        int id = 0;
+        System.out.println(workflow.GetNextWFItem("Review"));
+        while ((id = workflow.GetNextWFItem("Review")) > 0) {
+            System.out.println(id);
+            table.getItems().add(formIDToForm.get(id));
+        }
     }
 
 }

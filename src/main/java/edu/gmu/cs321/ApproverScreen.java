@@ -147,10 +147,10 @@ public class ApproverScreen extends Application {
 
     // Final Screen with Success Message
     private void showFinalScreen(String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle("Result");
-    alert.setHeaderText("Notice!"); 
-    alert.setContentText(message); 
-    alert.showAndWait(); 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Result");
+        alert.setHeaderText("Notice!");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
