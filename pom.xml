@@ -56,7 +56,7 @@
             <systemPath>${project.basedir}/src/main/resources/edu/gmu/cs321/workflow.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>com.cs321</groupId>
+            <groupId>mysql.jdbc.connector</groupId>
             <artifactId>JDBCConnector</artifactId>
             <version>1.0</version>
             <scope>system</scope>

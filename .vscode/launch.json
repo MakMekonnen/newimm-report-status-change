@@ -1,0 +1,63 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ApproverScreen",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.ApproverScreen",
+            "projectName": "cs321"
+        },
+        {
+            "type": "java",
+            "name": "DataEntryScreen",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.DataEntryScreen",
+            "projectName": "cs321"
+        },
+        {
+            "type": "java",
+            "name": "HelloApplication",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.HelloApplication",
+            "projectName": "cs321"
+        },
+        {
+            "type": "java",
+            "name": "ReviewerScreen",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.ReviewerScreen",
+            "projectName": "cs321"
+        },
+        {
+            "type": "java",
+            "name": "Test",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.Test",
+            "projectName": "cs321"
+        },
+        {
+            "type": "java",
+            "name": "TestDatabase",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.TestDatabase",
+            "projectName": "cs321"
+        },
+        {
+            "type": "java",
+            "name": "TestWorkflow",
+            "request": "launch",
+            "mainClass": "edu.gmu.cs321/edu.gmu.cs321.TestWorkflow",
+            "projectName": "cs321"
+        }
+    ]
+}

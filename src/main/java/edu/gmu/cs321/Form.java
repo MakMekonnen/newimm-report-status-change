@@ -81,17 +81,33 @@ public class Form {
     public void setStatus(Status status) {
         this.status = status;
     }
-    
+    public boolean equals(Form other){
+        if(other.getFormId() != formId){
+            return false;
+        }else if (other.getState() != state){
+            return false;
+        }else if (other.getAid() != aid){
+            return false;
+        }
+        /*further implementation needed */
+        return true;
+    }
+
+    @Override
     public String toString(){
-        StringBuilder sb = new StringBuilder(name);
+        StringBuilder sb = new StringBuilder("[");
+        sb.append(formId);
+        sb.append(", ");
+        sb.append(state.name());
+        sb.append(", ");
+        sb.append(name);
         sb.append(", ");
         sb.append(dob);
         sb.append(", ");
-        sb.append(status.toString());
-        sb.append(", ");
         sb.append(aid);
         sb.append(", ");
-        sb.append(formId);
+        sb.append(status.toString());
+        sb.append("]");
         return sb.toString();
     }
 }

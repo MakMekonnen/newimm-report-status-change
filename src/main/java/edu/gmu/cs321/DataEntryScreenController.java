@@ -128,6 +128,7 @@ public class DataEntryScreenController implements Initializable{
         session_form.setState(State.REVIEWER_STATE);
         formIDToForm.put(session_form.getFormId(), session_form);
         int result = Test.workflow.AddWFItem(session_form.getFormId(), session_form.getState().getValue());
+        Utility.createForm(session_form.getFormId(), session_form.getState(), session_form.getName(), session_form.getDob(), session_form.getAid(), session_form.getStatus());
 
         Alert alert = new Alert(AlertType.INFORMATION);
         if(result == 0){
