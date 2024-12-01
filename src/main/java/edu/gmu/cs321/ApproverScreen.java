@@ -16,6 +16,12 @@ import javafx.stage.Stage;
 
 public class ApproverScreen extends Application {
 
+    TextField formIdField = createTextField();
+    TextField aidField = createTextField();
+    TextField nameField = createTextField();
+    TextField dobField = createTextField();
+    TextField statusField = createTextField();
+
     public static void main(String[] args) {
         launch();
     }
@@ -36,9 +42,12 @@ public class ApproverScreen extends Application {
         BorderPane.setMargin(topLeft, new Insets(10, 0, 0, 15));
 
         // Main Layout
-        GridPane formGrid = createFormGrid(form);
+        GridPane formGrid = createFormGrid();
         formGrid.setAlignment(Pos.CENTER);
         root.setCenter(formGrid);
+
+        //initial field updating
+        updateFields(form);
 
         // Approve and Deny Buttons
         HBox bottomButtons = new HBox(10);
@@ -60,43 +69,40 @@ public class ApproverScreen extends Application {
         stage.show();
     }
 
+    private TextField createTextField(){
+        TextField f = new TextField();
+        f.setStyle("-fx-font-size: 12px");
+        f.setEditable(false);
+        return f;
+    }
+
+    private Label createGridLabel(String text){
+        Label l = new Label(text);
+        l.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
+        return l;
+    }
+
+    private void updateFields(Form form){
+        formIdField.setText("" + form.getFormId());
+        aidField.setText(form.getAid());
+        nameField.setText(form.getName());
+        dobField.setText(form.getDob());
+        statusField.setText(form.getStatus().name());
+    }
+
     // Helper method to create the form grid with labels and text fields
-    private GridPane createFormGrid(Form form) {
+    private GridPane createFormGrid() {
         GridPane grid = new GridPane();
         grid.setHgap(15);
         grid.setVgap(15);
         grid.setPadding(new Insets(20));
 
         // Labels and text fields for form fields
-        Label formIdLabel = new Label("Form ID: ");
-        TextField formIdField = new TextField("" + form.getFormId());
-        formIdLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
-        formIdField.setStyle("-fx-font-size: 12px");
-        formIdField.setEditable(false);
-
-        Label aidLabel = new Label("Alien Registration Number: ");
-        TextField aidField = new TextField(form.getAid());
-        aidLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
-        aidField.setStyle("-fx-font-size: 12px");
-        aidField.setEditable(false);
-
-        Label nameLabel = new Label("Name: ");
-        TextField nameField = new TextField(form.getName());
-        nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
-        nameField.setStyle("-fx-font-size: 12px");
-        nameField.setEditable(false);
-
-        Label dobLabel = new Label("Date of Birth: ");
-        TextField dobField = new TextField(form.getDob());
-        dobLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
-        dobField.setStyle("-fx-font-size: 12px");
-        dobField.setEditable(false);
-
-        Label statusLabel = new Label("Immigration Status: ");
-        TextField statusField = new TextField(form.getStatus().toString());
-        statusLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 15px");
-        statusField.setStyle("-fx-font-size: 12px");
-        statusField.setEditable(false);
+        Label formIdLabel = createGridLabel("Form ID: ");
+        Label aidLabel = createGridLabel("Alien Registration Number: ");
+        Label nameLabel = createGridLabel("Name: ");
+        Label dobLabel = createGridLabel("Date of Birth: ");
+        Label statusLabel = createGridLabel("Immigration Status: ");
 
         // Add labels and fields to the grid
         grid.add(formIdLabel, 0, 0);
