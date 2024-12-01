@@ -18,6 +18,7 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.util.List;
 
+import static edu.gmu.cs321.State.APPROVER_STATE;
 import static edu.gmu.cs321.Status.ASYLUM;
 import static edu.gmu.cs321.Status.LAWFUL;
 import static edu.gmu.cs321.Test.formIDToForm;
@@ -32,8 +33,6 @@ public class ReviewerScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         Employee reviewer = new Reviewer("2", "steve");
-        //Form form1 = new Form("11", "gob", "10/28/1999", LAWFUL);
-        //Form form2 = new Form("24", "berry", "03/26/2002", ASYLUM);
 
         // Javafx
         BorderPane root = new BorderPane();
@@ -62,9 +61,6 @@ public class ReviewerScreen extends Application {
 
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        //table.getItems().add(form1);
-        //table.getItems().add(form2);
-
         // populate table with forms
         refresh(table);
 
@@ -90,14 +86,20 @@ public class ReviewerScreen extends Application {
         });
 
         approveButton.setOnAction(e -> {
-            Form row = table.getSelectionModel().getSelectedItem();
-            if (row != null) {
-                workflow.AddWFItem(row.getFormId(), "Approve");
+            Form selectedForm = table.getSelectionModel().getSelectedItem();
+            if (selectedForm != null) {
+                Utility.updateForm(selectedForm.getFormId(), State.APPROVER_STATE);
+                refresh(table);
+                //workflow.AddWFItem(selectedForm.getFormId(), "Approve");
             }
         });
 
         denyButton.setOnAction(e -> {
             Form selectedForm = table.getSelectionModel().getSelectedItem();
+            if(selectedForm != null){
+                Utility.updateForm(selectedForm.getFormId(), State.DATA_ENTRY_STATE);
+                refresh(table);
+            }
         });
 
         Scene scene = new Scene(root, 500, 300);
@@ -107,13 +109,6 @@ public class ReviewerScreen extends Application {
     }
 
     public void refresh(TableView<Form> table) {
-        /*int id = 0;
-        System.out.println(workflow.GetNextWFItem("Review"));
-        while ((id = workflow.GetNextWFItem("Review")) > 0) {
-            System.out.println(id);
-            table.getItems().add(formIDToForm.get(id));
-        }
-        */
         List<Form> items = table.getItems();
         items.clear();
         for (Form f : Utility.selectForms(State.REVIEWER_STATE)) {

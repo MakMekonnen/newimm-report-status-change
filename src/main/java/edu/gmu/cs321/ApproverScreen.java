@@ -1,5 +1,7 @@
 package edu.gmu.cs321;
 
+import java.util.LinkedList;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -22,6 +24,8 @@ public class ApproverScreen extends Application {
     TextField dobField = createTextField();
     TextField statusField = createTextField();
 
+    LinkedList<Form> forms = Utility.selectForms(State.APPROVER_STATE); //CHANGE STATE 
+
     public static void main(String[] args) {
         launch();
     }
@@ -29,7 +33,8 @@ public class ApproverScreen extends Application {
     @Override
     public void start(Stage stage) {
         // Template Form
-        Form form = new Form("A24", "John Berry", "03/26/2002", Status.ASYLUM);
+        //Form form = new Form("A24", "John Berry", "03/26/2002", Status.ASYLUM);
+        Form form = forms.pop();
 
         // Main layout
         BorderPane root = new BorderPane();

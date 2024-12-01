@@ -130,15 +130,14 @@ public class Utility {
         }
         return id;
     }
-    public static void updateForm(int formId, String aid, State state) {
-        String updateQuery = "UPDATE form SET state = ?, WHERE formId = ? AND aid = ?";
+    public static void updateForm(int formId, State state) {
+        String updateQuery = "UPDATE form SET state = ? WHERE formId = ?";
 
         try (Connection conn = getConnection();
                 PreparedStatement stmt = conn.prepareStatement(updateQuery)) {
 
             stmt.setString(1, state.name());
             stmt.setInt(2, formId);
-            stmt.setString(2, aid);
             int rowsAffected = stmt.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Form updated successfully.");
