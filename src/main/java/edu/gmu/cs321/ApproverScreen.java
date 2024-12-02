@@ -36,17 +36,8 @@ public class ApproverScreen extends Application {
         //Form form = new Form("A24", "John Berry", "03/26/2002", Status.ASYLUM);
         Form form = forms.pop();
 
-        // Main layout
-        BorderPane root = new BorderPane();
-
-        // Back Button
-        Button backButton = new Button("Back");
-        HBox topLeft = new HBox(backButton);
-        topLeft.setAlignment(Pos.TOP_LEFT);
-        root.setTop(topLeft);
-        BorderPane.setMargin(topLeft, new Insets(10, 0, 0, 15));
-
         // Main Layout
+        BorderPane root = new BorderPane();
         GridPane formGrid = createFormGrid();
         formGrid.setAlignment(Pos.CENTER);
         root.setCenter(formGrid);
